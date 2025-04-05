@@ -1,5 +1,6 @@
 using FluentValidation;
 using Ria.API.Endpoints;
+using Ria.API.Middlewares;
 using Ria.API.StartupConfiguration;
 using System.Net.NetworkInformation;
 using System.Reflection;
@@ -26,6 +27,10 @@ builder.Services.AddValidatorsFromAssembly(Assembly.Load("Ria.Application"));
 builder.Services.AddConnectionConfiguration(builder.Environment, builder.Configuration);
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
+app.UseResponseCompression();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

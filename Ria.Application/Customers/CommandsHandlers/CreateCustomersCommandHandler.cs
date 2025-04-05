@@ -15,7 +15,6 @@ namespace Ria.Application.Customers.CommandsHandlers
 
         public async Task<bool> Handle(CreateCustomersCommand command, CancellationToken cancellationToken)
         {
-
             return true;
         }
     }

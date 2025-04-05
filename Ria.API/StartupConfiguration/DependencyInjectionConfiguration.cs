@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Ria.API.Middlewares;
 using Ria.Application.Customers.Commands;
 using Ria.Application.Customers.CommandsHandlers;
 
@@ -45,7 +46,7 @@ namespace Ria.API.StartupConfiguration
             //#endregion
 
             #region Middleware
-            //services.AddTransient<ExceptionHandlingMiddleware>();
+            services.AddTransient<ExceptionHandlingMiddleware>();
             #endregion
 
             #region Commands
