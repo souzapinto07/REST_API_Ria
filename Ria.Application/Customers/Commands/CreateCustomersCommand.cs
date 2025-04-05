@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Ria.Application.Customers.Contracts.Request;
 using Ria.Domain.Common.Messages;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,19 @@ namespace Ria.Application.Customers.Commands
 {
     public class CreateCustomersCommand : Command<bool>
     {
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
-        public int Age { get; private set; }
-        public int Id { get; private set; }
+        public List<CreateCustomerDTO> Customers { get; private set; }
 
-        public CreateCustomersCommand(string firstName, string lastName, int age, int id)
+        public CreateCustomersCommand(List<CreateCustomerDTO> customers)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            Age = age;
-            Id = id;
+            Customers = customers;
         }
     }
 
-    public class CreateCustomersCommandValidation : AbstractValidator<CreateCustomersCommand>
+    public class CreateCustomersCommandValidator : AbstractValidator<CreateCustomersCommand>
     {
-        private readonly int AGE_MIN = 18;
-        public CreateCustomersCommandValidation()
+        public CreateCustomersCommandValidator()
         {
-            RuleFor(x => x.FirstName).NotEmpty().WithMessage("First Name cannot be empty").WithErrorCode("1");
-            RuleFor(x => x.LastName).NotEmpty().WithMessage("Last Name cannot be empty").WithErrorCode("2");
-            RuleFor(x => x.Age).GreaterThan(AGE_MIN).WithMessage($"Age needs to be greater than {AGE_MIN}").WithErrorCode("3");
-            RuleFor(x => x.Id).GreaterThan(0).WithMessage("Role cannot be empty").WithErrorCode("4");
+            RuleForEach(x => x.Customers).SetValidator(new CreateCustomerDTOValidation());
         }
     }
 }

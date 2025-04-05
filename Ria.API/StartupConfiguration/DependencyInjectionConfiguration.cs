@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using Ria.Application.Customers.Commands;
+using Ria.Application.Customers.CommandsHandlers;
 
 namespace Ria.API.StartupConfiguration
 {
@@ -47,8 +49,7 @@ namespace Ria.API.StartupConfiguration
             #endregion
 
             #region Commands
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehavior<,>));
-            //services.AddScoped<IRequestHandler<AuthenticateCommand, AuthenticateResponseDTO>, AuthenticateCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateCustomersCommand, bool>, CreateCustomersCommandHandler>();
 
             #endregion
 

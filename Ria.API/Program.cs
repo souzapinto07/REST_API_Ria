@@ -21,7 +21,7 @@ builder.Services.AddSwaggerConfiguration();
 
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddValidatorsFromAssembly(Assembly.Load("BabySleep.Application"));
+builder.Services.AddValidatorsFromAssembly(Assembly.Load("Ria.Application"));
 
 builder.Services.AddConnectionConfiguration(builder.Environment, builder.Configuration);
 

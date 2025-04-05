@@ -12,8 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Customers\CommandsHandlers\" />
-    <Folder Include="Customers\Contracts\" />
+    <Folder Include="Customers\Contracts\Response\" />
   </ItemGroup>
 
   <ItemGroup>
