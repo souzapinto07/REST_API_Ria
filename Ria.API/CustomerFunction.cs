@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Ria.Application.Customers.Commands;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -30,7 +31,7 @@ namespace Ria.API
             _logger.LogInformation("C# HTTP trigger function processed a POST request.");
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            List<CustomerDto>? data = JsonConvert.DeserializeObject<List<CustomerDto>>(requestBody);
+            List<CreateCustomersCommand>? data = JsonConvert.DeserializeObject<List<CreateCustomersCommand>>(requestBody);
 
             if (data == null)
             {
@@ -38,12 +39,7 @@ namespace Ria.API
             }
 
             // Process the data as needed
-             return new OkObjectResult($"Customer {data[0].Name} with email {data[0].Email} created successfully!");
+             return new OkObjectResult($"Customer {data[0].FirstName} with email {data[0].LastName} created successfully!");
         }
-    }
-    public class CustomerDto
-    {
-        public string Name { get; set; }
-        public string Email { get; set; }
     }
 }

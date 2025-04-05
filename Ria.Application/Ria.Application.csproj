@@ -11,4 +11,14 @@
     <PackageReference Include="MediatR" Version="12.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Customers\CommandsHandlers\" />
+    <Folder Include="Customers\Contracts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ria.Domain\Ria.Domain.csproj" />
+    <ProjectReference Include="..\Ria.Infrastructure\Ria.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

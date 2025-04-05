@@ -20,6 +20,11 @@
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.0.2" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ria.Application\Ria.Application.csproj" />
+    <ProjectReference Include="..\Ria.Domain\Ria.Domain.csproj" />
+    <ProjectReference Include="..\Ria.Infrastructure\Ria.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
