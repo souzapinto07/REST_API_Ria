@@ -11,6 +11,6 @@ namespace Ria.Domain.Customers.Repositories
     public interface ICustomerRepository : IRepository<Customer>
     {
         Task<List<Customer>> GetCustomers();
-        void CreateUser(Customer customer);
+        void CreateCustomer(Customer customer);
     }
 }

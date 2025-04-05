@@ -27,7 +27,7 @@ namespace Ria.Infrastructure.Data
 
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 
-            optionsBuilder.UseSqlServer("Host=localhost;Database=Babysleep;Username=postgres;Password=Mankind07*");
+            optionsBuilder.UseSqlServer("Server=your-server.database.windows.net;Database=YourDbName;User Id=your-user;Password=your-password;TrustServerCertificate=True;");
 
             return new ApplicationDbContext(optionsBuilder.Options);
         }

@@ -27,7 +27,7 @@ namespace Ria.Infrastructure.Repositories
         {
             return await _context.Customer.ToListAsync();
         }
-        public void CreateUser(Customer customer)
+        public void CreateCustomer(Customer customer)
         {
             _context.Customer.Add(customer);
         }
