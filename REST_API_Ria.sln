@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ria.Domain", "Ria.Domain\Ri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ria.Infrastructure", "Ria.Infrastructure\Ria.Infrastructure.csproj", "{1C7A9ABB-689B-45F1-A777-8F77C4EFBBC9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ria.API", "Ria.API\Ria.API.csproj", "{536F98AF-B650-495F-B345-FF3CB14986F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1C7A9ABB-689B-45F1-A777-8F77C4EFBBC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C7A9ABB-689B-45F1-A777-8F77C4EFBBC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C7A9ABB-689B-45F1-A777-8F77C4EFBBC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{536F98AF-B650-495F-B345-FF3CB14986F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{536F98AF-B650-495F-B345-FF3CB14986F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{536F98AF-B650-495F-B345-FF3CB14986F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{536F98AF-B650-495F-B345-FF3CB14986F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

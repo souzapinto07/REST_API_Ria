@@ -1,4 +1,4 @@
-@Ria.API_HostAddress = http://localhost:5139
+@Ria.API_HostAddress = http://localhost:5195
 
 GET {{Ria.API_HostAddress}}/weatherforecast/
 Accept: application/json
