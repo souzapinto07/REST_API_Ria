@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "RiaAPI": {
-      "commandName": "Project",
-      "commandLineArgs": "--port 7048",
-      "launchBrowser": false
-    }
-  }
-}

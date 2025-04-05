@@ -1,18 +1,23 @@
-using FluentValidation;
-using Microsoft.Azure.Functions.Worker.Builder;
-using Microsoft.Extensions.Hosting;
-using System.Reflection;
+var builder = WebApplication.CreateBuilder(args);
 
-var builder = FunctionsApplication.CreateBuilder(args);
+// Add services to the container.
 
-builder.ConfigureFunctionsWebApplication();
+builder.Services.AddControllers();
+// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddOpenApi();
 
-builder.Services.AddValidatorsFromAssembly(Assembly.Load("Ria.Application"));
-builder.Services.AddValidatorsFromAssemblyContaining<Startup>();
+var app = builder.Build();
 
-// Application Insights isn't enabled by default. See https://aka.ms/AAt8mw4.
-// builder.Services
-//     .AddApplicationInsightsTelemetryWorkerService()
-//     .ConfigureFunctionsApplicationInsights();
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
 
-builder.Build().Run();
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
