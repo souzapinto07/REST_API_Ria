@@ -11,20 +11,25 @@ namespace Ria.Domain.Common.Entities
     {
         public int Id { get; set; }
 
+        private string? ErrorMessage { get; set; }
+
+
         public void SetId(int id)
         {
             Id = id;
         }
 
 
-        public string AddErrorMsg(ValidationResult validationResult)
+        public void AddErrorMsg(ValidationResult validationResult)
         {
-            string message = "";
             foreach (var failure in validationResult.Errors)
             {
-                message += "Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage + ".";
+                ErrorMessage += "Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage + ".";
             }
-            return message;
+        }
+        public string? GetErrorMsg()
+        {
+            return ErrorMessage;
         }
     }
 }

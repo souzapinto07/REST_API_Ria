@@ -28,18 +28,42 @@ namespace Ria.Domain.Customers.Entities
             Age = age;
             SetId(id);
 
-            Validate();
+            //Validate();
         }
 
-        protected void Validate()
+        public bool IsValid()
         {
             var validator = new CustomerValidator().Validate(this);
 
             if (!validator.IsValid)
             {
-                throw new DomainException(AddErrorMsg(validator));
+               AddErrorMsg(validator);
+                return false;
             }
+            return true;
         }
+
+        //public string Validate()
+        //{
+        //    string msg = "";
+        //    var validator = new CustomerValidator().Validate(this);
+
+        //    if (!validator.IsValid)
+        //    {
+        //        msg = AddErrorMsg(validator);
+        //    }
+        //    return msg;
+        //}
+
+        //protected void Validate()
+        //{
+        //    var validator = new CustomerValidator().Validate(this);
+
+        //    if (!validator.IsValid)
+        //    {
+        //        throw new DomainException(AddErrorMsg(validator));
+        //    }
+        //}
     }
 
     public class CustomerValidator : AbstractValidator<Customer>

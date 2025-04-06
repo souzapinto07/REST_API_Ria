@@ -8,7 +8,7 @@ namespace Ria.Domain.Common.Exceptions
 {
     public class DomainException : Exception
     {
-        public string? Code { get; set; }
+        //public string? Code { get; set; }
 
         public DomainException()
         { }

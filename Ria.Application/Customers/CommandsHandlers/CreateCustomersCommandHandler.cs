@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Ria.Application.Customers.Commands;
 using Ria.Domain.Common.Exceptions;
 using Ria.Domain.Customers.Entities;
@@ -28,13 +29,20 @@ namespace Ria.Application.Customers.CommandsHandlers
 
             foreach (var customer in command.Customers)
             {
-
+             
                 if (_customerRepository.Exists(customer.Id))
                 {
                     errors.Add($"Id:{customer.Id} already exists");
+                    continue;
                 }
 
                 var newCustomer = new Customer(customer.FirstName, customer.LastName, customer.Age, customer.Id);
+
+                if(!newCustomer.IsValid())
+                {
+                    errors.Add($"Id:{customer.Id} {newCustomer.GetErrorMsg()}");
+                    continue;
+                }
 
                 _customerRepository.CreateCustomer(newCustomer);
 
@@ -42,8 +50,8 @@ namespace Ria.Application.Customers.CommandsHandlers
 
             if (errors.Count > 0)
             {
-               
-                throw new DomainException(string.Join(", ", errors));
+                string msg = ("Some customers failed.\n" + string.Join(", ", errors));
+                throw new BadRequestException(msg);
             }
 
 
