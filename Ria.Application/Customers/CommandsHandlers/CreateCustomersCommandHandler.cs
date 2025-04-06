@@ -51,7 +51,7 @@ namespace Ria.Application.Customers.CommandsHandlers
             if (errors.Count > 0)
             {
                 string msg = ("Some customers failed.\n" + string.Join(", ", errors));
-                throw new BadRequestException(msg);
+                throw new DomainException(msg);
             }
 
 

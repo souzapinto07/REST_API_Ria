@@ -40,6 +40,7 @@ namespace Ria.API.Middlewares
 
             httpContext.Response.StatusCode = exception switch
             {
+                DomainException => StatusCodes.Status400BadRequest,
                 BadRequestException => StatusCodes.Status400BadRequest,
                 NotFoundException => StatusCodes.Status404NotFound,
                 _ => StatusCodes.Status500InternalServerError
