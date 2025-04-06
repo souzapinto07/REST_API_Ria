@@ -36,7 +36,7 @@ namespace Ria.Application.Customers.CommandsHandlers
                     continue;
                 }
 
-                var newCustomer = new Customer(customer.FirstName, customer.LastName, customer.Age, customer.Id);
+                var newCustomer = new Customer(customer.LastName, customer.FirstName, customer.Age, customer.Id);
 
                 if(!newCustomer.IsValid())
                 {

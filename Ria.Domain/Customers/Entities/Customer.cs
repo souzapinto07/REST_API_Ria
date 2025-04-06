@@ -11,14 +11,14 @@ namespace Ria.Domain.Customers.Entities
 {
     public class Customer : Entity
     {
-        public string FirstName { get;  set; }
         public string LastName { get;  set; }
+        public string FirstName { get;  set; }
         public int Age { get;  set; }
 
-        public Customer(string firstName, string lastName, int age, int id)
+        public Customer(string lastName, string firstName, int age, int id)
         {
-            FirstName = firstName;
             LastName = lastName;
+            FirstName = firstName;
             Age = age;
             SetId(id);
 
@@ -42,8 +42,8 @@ namespace Ria.Domain.Customers.Entities
         private readonly int AGE_MIN = 18;
         public CustomerValidator()
         {
-            RuleFor(x => x.FirstName).NotEmpty().WithMessage("First Name cannot be empty").WithErrorCode("1");
-            RuleFor(x => x.LastName).NotEmpty().WithMessage("Last Name cannot be empty").WithErrorCode("2");
+            RuleFor(x => x.LastName).NotEmpty().WithMessage("Last Name cannot be empty").WithErrorCode("1");
+            RuleFor(x => x.FirstName).NotEmpty().WithMessage("First Name cannot be empty").WithErrorCode("2");
             RuleFor(x => x.Age).GreaterThan(AGE_MIN).WithMessage($"Age needs to be greater than {AGE_MIN}").WithErrorCode("3");
             RuleFor(x => x.Id).GreaterThan(0).WithMessage("Role cannot be empty").WithErrorCode("4");
         }
