@@ -12,5 +12,6 @@ namespace Ria.Domain.Customers.Repositories
     {
         Task<List<Customer>> GetCustomers();
         void CreateCustomer(Customer customer);
+        bool Exists(int id);
     }
 }

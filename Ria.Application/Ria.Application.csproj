@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Customers\Contracts\Response\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Ria.Domain\Ria.Domain.csproj" />
     <ProjectReference Include="..\Ria.Infrastructure\Ria.Infrastructure.csproj" />
   </ItemGroup>

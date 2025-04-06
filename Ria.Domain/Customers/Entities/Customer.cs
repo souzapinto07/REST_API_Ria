@@ -11,9 +11,9 @@ namespace Ria.Domain.Customers.Entities
 {
     public class Customer : Entity
     {
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
-        public int Age { get; private set; }
+        public string FirstName { get;  set; }
+        public string LastName { get;  set; }
+        public int Age { get;  set; }
 
         //EF
         public Customer()

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ria.Application.Customers.Contracts.Request
 {
-    public class CreateCustomerDTO
+    public record CreateCustomerDTO
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
@@ -26,12 +26,11 @@ namespace Ria.Application.Customers.Contracts.Request
 
     public class CreateCustomerDTOValidation : AbstractValidator<CreateCustomerDTO>
     {
-        private readonly int AGE_MIN = 18;
         public CreateCustomerDTOValidation()
         {
             RuleFor(x => x.FirstName).NotEmpty().WithMessage("First Name cannot be empty").WithErrorCode("1");
             RuleFor(x => x.LastName).NotEmpty().WithMessage("Last Name cannot be empty").WithErrorCode("2");
-            RuleFor(x => x.Age).GreaterThan(AGE_MIN).WithMessage($"Age needs to be greater than {AGE_MIN}").WithErrorCode("3");
+            RuleFor(x => x.Age).GreaterThan(0).WithMessage("Age needs to be greater than 0").WithErrorCode("3");
             RuleFor(x => x.Id).GreaterThan(0).WithMessage("Role cannot be empty").WithErrorCode("4");
         }
     }

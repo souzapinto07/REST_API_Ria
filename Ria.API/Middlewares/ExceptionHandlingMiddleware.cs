@@ -4,28 +4,18 @@ using System.Text.Json;
 
 namespace Ria.API.Middlewares
 {
-    /// <summary>
-    /// Middleware for handling exceptions in the application.
-    /// </summary>
+
     public sealed class ExceptionHandlingMiddleware : IMiddleware
     {
         private readonly ILogger<ExceptionHandlingMiddleware> _logger;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ExceptionHandlingMiddleware"/> class.
-        /// </summary>
-        /// <param name="logger">The logger instance.</param>
+ 
         public ExceptionHandlingMiddleware(ILogger<ExceptionHandlingMiddleware> logger)
         {
             _logger = logger;
         }
 
-        /// <summary>
-        /// Invokes the middleware to handle exceptions.
-        /// </summary>
-        /// <param name="context">The HTTP context.</param>
-        /// <param name="next">The next middleware in the pipeline.</param>
-        /// <returns>A task that represents the completion of request processing.</returns>
+     
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             try

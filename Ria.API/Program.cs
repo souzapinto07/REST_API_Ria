@@ -1,4 +1,5 @@
 using FluentValidation;
+using Microsoft.AspNetCore.Http.Json;
 using Ria.API.Endpoints;
 using Ria.API.Middlewares;
 using Ria.API.StartupConfiguration;
@@ -24,13 +25,18 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddValidatorsFromAssembly(Assembly.Load("Ria.Application"));
 
-builder.Services.AddConnectionConfiguration(builder.Environment, builder.Configuration);
+//builder.Services.AddConnectionConfiguration(builder.Environment, builder.Configuration);
+
+builder.Services.Configure<JsonOptions>(options =>
+{
+    options.SerializerOptions.PropertyNamingPolicy = null;
+});
 
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-app.UseResponseCompression();
+//app.UseResponseCompression();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

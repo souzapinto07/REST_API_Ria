@@ -2,6 +2,8 @@
 using Ria.API.Middlewares;
 using Ria.Application.Customers.Commands;
 using Ria.Application.Customers.CommandsHandlers;
+using Ria.Domain.Customers.Repositories;
+using Ria.Infrastructure.Repositories;
 
 namespace Ria.API.StartupConfiguration
 {
@@ -55,7 +57,7 @@ namespace Ria.API.StartupConfiguration
             #endregion
 
             #region Repositories
-            //services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
 
             #endregion
 

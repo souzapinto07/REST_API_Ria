@@ -9,6 +9,6 @@ namespace Ria.Domain.Common.Data
 {
     public interface IRepository<T> : IDisposable where T : Entity 
     {
-        IUnitOfWork UnitOfWork { get; }
+        //IUnitOfWork UnitOfWork { get; }
     }
 }
