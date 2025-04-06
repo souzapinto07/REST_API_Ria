@@ -10,7 +10,7 @@ namespace Ria.Domain.Customers.Repositories
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
-        Task<List<Customer>> GetCustomers();
+        List<Customer> GetCustomers();
         void CreateCustomer(Customer customer);
         bool Exists(int id);
     }

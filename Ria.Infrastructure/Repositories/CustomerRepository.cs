@@ -14,14 +14,14 @@ namespace Ria.Infrastructure.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
-        private readonly string _filePath = "customers.json";
-        private List<Customer> _customers = new();
+        private readonly string FILE_PATH = "customers.json";
+        private List<Customer> _customers = new List<Customer>();
 
         public CustomerRepository()
         {
-            if (File.Exists(_filePath))
+            if (File.Exists(FILE_PATH))
             {
-                var json = File.ReadAllText(_filePath);
+                var json = File.ReadAllText(FILE_PATH);
                 var data = JsonSerializer.Deserialize<List<Customer>>(json);
                 if (data != null)
                 {
@@ -30,16 +30,15 @@ namespace Ria.Infrastructure.Repositories
             }
         }
 
-        public async Task<List<Customer>> GetCustomers()
+        public List<Customer> GetCustomers()
         {
-          return  _customers;
+          return _customers;
         }
 
         public bool Exists(int id)
         {
-          return  _customers.Any(c => c.Id == id);
+          return _customers.Exists(c => c.Id == id);
         }
-
 
         public void CreateCustomer(Customer newCustomer)
         {
@@ -58,12 +57,11 @@ namespace Ria.Infrastructure.Repositories
         private void Save()
         {
             var json = JsonSerializer.Serialize(_customers, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(_filePath, json);
+            File.WriteAllText(FILE_PATH, json);
         }
 
         public void Dispose()
         {
-            //_context?.Dispose();
             GC.SuppressFinalize(this);
         }
     }

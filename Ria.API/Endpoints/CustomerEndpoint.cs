@@ -20,11 +20,11 @@ namespace Ria.API.Endpoints
         }
 
 
-        public static async Task<IResult> Customers(ICustomerRepository customerRepository)
+        public static IResult Customers(ICustomerRepository customerRepository)
         {
             //TODO AutoMapper
            // List<CustomerResponseDTO> cuistomerDTO = new List<CustomerResponseDTO>();
-            return TypedResults.Ok(await customerRepository.GetCustomers());
+            return TypedResults.Ok( customerRepository.GetCustomers());
         }
 
         public static async Task<IResult> CreateCustomers(CreateCustomersCommand command, IMediator _mediator)

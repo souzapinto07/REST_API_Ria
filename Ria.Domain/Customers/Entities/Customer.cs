@@ -15,12 +15,6 @@ namespace Ria.Domain.Customers.Entities
         public string LastName { get;  set; }
         public int Age { get;  set; }
 
-        //EF
-        public Customer()
-        {
-            
-        }
-
         public Customer(string firstName, string lastName, int age, int id)
         {
             FirstName = firstName;

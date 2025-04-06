@@ -11,9 +11,9 @@ namespace Ria.Domain.Common.Entities
     {
         public int Id { get; set; }
 
-        private bool HasError { get; set; } = false;
+        private bool _hasError { get; set; } = false;
 
-        private string? ErrorMessage { get; set; }
+        private string? _errorMessage { get; set; }
 
 
         public void SetId(int id)
@@ -27,17 +27,17 @@ namespace Ria.Domain.Common.Entities
         {
             foreach (var failure in validationResult.Errors)
             {
-                HasError = true;
-                ErrorMessage += "Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage + ".";
+                _hasError = true;
+                _errorMessage += "Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage + ".";
             }
         }
         public string? GetErrorMsg()
         {
-            return ErrorMessage;
+            return _errorMessage;
         }
         public bool IsValid()
         {
-            return !HasError;
+            return !_hasError;
         }
     }
 }
