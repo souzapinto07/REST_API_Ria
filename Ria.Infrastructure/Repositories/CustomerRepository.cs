@@ -31,7 +31,7 @@ namespace Ria.Infrastructure.Repositories
             }
         }
 
-        public List<Customer> GetCustomers()
+        public List<Customer> Customers()
         {
             lock (_lock)
             {
@@ -60,6 +60,14 @@ namespace Ria.Infrastructure.Repositories
                     i++;
                 }
                 _customers.Insert(i, newCustomer);
+                Save();
+            }
+        }
+        public void ClearCustomers()
+        {
+            lock (_lock)
+            {
+                _customers.Clear();
                 Save();
             }
         }

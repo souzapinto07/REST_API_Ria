@@ -15,13 +15,15 @@ namespace Ria.API.Endpoints
 
             group.MapPost("CreateCustomers", CreateCustomers).Produces<bool>().AddEndpointFilter<ValidatorFilter<CreateCustomersCommand>>();
 
+            group.MapDelete("ClearCustomers", ClearCustomers);
+
             return group;
         }
 
 
         public static IResult Customers(ICustomerRepository customerRepository)
         {
-            return TypedResults.Ok( customerRepository.GetCustomers());
+            return TypedResults.Ok( customerRepository.Customers());
         }
 
         public static async Task<IResult> CreateCustomers(CreateCustomersCommand command, IMediator _mediator)
@@ -33,6 +35,13 @@ namespace Ria.API.Endpoints
             }
 
             return TypedResults.Ok(await _mediator.Send(command));
+        }
+
+        //Just for testing purposes
+        public static IResult ClearCustomers(ICustomerRepository customerRepository)
+        {
+            customerRepository.ClearCustomers();
+            return TypedResults.NoContent();
         }
     }
 }
