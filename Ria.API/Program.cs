@@ -10,7 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-//builder.Services.AddOpenApi();
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -25,7 +24,6 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddValidatorsFromAssembly(Assembly.Load("Ria.Application"));
 
-//builder.Services.AddConnectionConfiguration(builder.Environment, builder.Configuration);
 
 builder.Services.Configure<JsonOptions>(options =>
 {
@@ -41,14 +39,9 @@ var app = builder.Build();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-//app.UseResponseCompression();
-
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
 
 app.UseHttpsRedirection();
 
