@@ -11,44 +11,57 @@ namespace Ria.Infrastructure.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
+        private static readonly object _lock = new object();
         private readonly string FILE_PATH = "customers.json";
         private List<Customer> _customers = new List<Customer>();
 
         public CustomerRepository()
         {
-            if (File.Exists(FILE_PATH))
+            lock (_lock)
             {
-                var json = File.ReadAllText(FILE_PATH);
-                var data = JsonSerializer.Deserialize<List<Customer>>(json);
-                if (data != null)
+                if (File.Exists(FILE_PATH))
                 {
-                    _customers = data;
+                    var json = File.ReadAllText(FILE_PATH);
+                    var data = JsonSerializer.Deserialize<List<Customer>>(json);
+                    if (data != null)
+                    {
+                        _customers = data;
+                    }
                 }
             }
         }
 
         public List<Customer> GetCustomers()
         {
-          return _customers;
+            lock (_lock)
+            {
+                return new List<Customer>(_customers);
+            }
         }
 
         public bool Exists(int id)
         {
-          return _customers.Exists(c => c.Id == id);
+            lock (_lock)
+            {
+                return _customers.Exists(c => c.Id == id);
+            }
         }
 
         public void CreateCustomer(Customer newCustomer)
         {
-            int i = 0;
-            while (i < _customers.Count &&
-                  (_customers[i].LastName.CompareTo(newCustomer.LastName) < 0 ||
-                  (_customers[i].LastName == newCustomer.LastName &&
-                   _customers[i].FirstName.CompareTo(newCustomer.FirstName) < 0)))
+            lock (_lock)
             {
-                i++;
+                int i = 0;
+                while (i < _customers.Count &&
+                      (_customers[i].LastName.CompareTo(newCustomer.LastName) < 0 ||
+                      (_customers[i].LastName == newCustomer.LastName &&
+                       _customers[i].FirstName.CompareTo(newCustomer.FirstName) < 0)))
+                {
+                    i++;
+                }
+                _customers.Insert(i, newCustomer);
+                Save();
             }
-            _customers.Insert(i, newCustomer);
-            Save();
         }
 
         private void Save()
@@ -62,4 +75,6 @@ namespace Ria.Infrastructure.Repositories
             GC.SuppressFinalize(this);
         }
     }
+
+
 }
