@@ -1,8 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Ria.Domain.Common.Data;
-using Ria.Domain.Customers.Entities;
+﻿using Ria.Domain.Customers.Entities;
 using Ria.Domain.Customers.Repositories;
-//using Ria.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

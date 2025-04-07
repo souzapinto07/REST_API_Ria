@@ -50,7 +50,7 @@ namespace Ria.Application.Customers.CommandsHandlers
 
             if (errors.Count > 0)
             {
-                string msg = "Some customers failed.\n" + string.Join(", ", errors);
+                string msg = "Some customers failed." + Environment.NewLine + string.Join(Environment.NewLine, errors);
                 throw new DomainException(msg);
             }
 
