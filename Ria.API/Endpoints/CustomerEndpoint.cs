@@ -1,8 +1,10 @@
 ﻿using MediatR;
 using Ria.API.Filters;
 using Ria.Application.Customers.Commands;
+using Ria.Domain.Common.Messages;
 using Ria.Domain.Customers.Entities;
 using Ria.Domain.Customers.Repositories;
+using System;
 
 namespace Ria.API.Endpoints
 {
@@ -15,7 +17,7 @@ namespace Ria.API.Endpoints
 
             group.MapPost("CreateCustomers", CreateCustomers).Produces<bool>().AddEndpointFilter<ValidatorFilter<CreateCustomersCommand>>();
 
-            group.MapDelete("ClearCustomers", ClearCustomers);
+            group.MapDelete("ClearCustomers", ClearCustomers).Produces<bool>().AddEndpointFilter<ValidatorFilter<ClearCustomersCommand>>(); ;
 
             return group;
         }
@@ -26,7 +28,7 @@ namespace Ria.API.Endpoints
             return TypedResults.Ok( customerRepository.Customers());
         }
 
-        public static async Task<IResult> CreateCustomers(CreateCustomersCommand command, IMediator _mediator)
+        public static async Task<IResult> CreateCustomers(CreateCustomersCommand command, IMediator mediator)
         {
 
             if (command.Customers == null || command.Customers.Count == 0)
@@ -34,14 +36,13 @@ namespace Ria.API.Endpoints
                 return TypedResults.BadRequest("Customers list cannot be null or empty.");
             }
 
-            return TypedResults.Ok(await _mediator.Send(command));
+            return TypedResults.Ok(await mediator.Send(command));
         }
 
         //Just for testing purposes
-        public static IResult ClearCustomers(ICustomerRepository customerRepository)
+        public static async Task<IResult> ClearCustomers(IMediator mediator)
         {
-            customerRepository.ClearCustomers();
-            return TypedResults.NoContent();
+            return TypedResults.Ok(await mediator.Send(new ClearCustomersCommand()));
         }
     }
 }

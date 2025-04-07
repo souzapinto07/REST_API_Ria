@@ -53,7 +53,7 @@ namespace Ria.API.StartupConfiguration
 
             #region Commands
             services.AddScoped<IRequestHandler<CreateCustomersCommand, bool>, CreateCustomersCommandHandler>();
-
+            services.AddScoped<IRequestHandler<ClearCustomersCommand, bool>, ClearCustomersCommandHandler>();
             #endregion
 
             #region Repositories

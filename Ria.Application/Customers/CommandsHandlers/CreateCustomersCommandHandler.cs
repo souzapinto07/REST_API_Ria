@@ -52,8 +52,7 @@ namespace Ria.Application.Customers.CommandsHandlers
                 throw new DomainException(msg);
             }
 
-
-            return true;
+            return await Task.FromResult(true);
         }
 
        
