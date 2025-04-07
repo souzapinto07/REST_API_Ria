@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Ria.API.Filters;
 using Ria.Application.Customers.Commands;
-using Ria.Application.Customers.Contracts.Response;
 using Ria.Domain.Customers.Entities;
 using Ria.Domain.Customers.Repositories;
 
