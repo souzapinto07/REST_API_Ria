@@ -1,6 +1,4 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Ria.Application.Customers.Commands;
 using Ria.Domain.Common.Exceptions;
 using Ria.Domain.Customers.Entities;
