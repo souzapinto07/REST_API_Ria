@@ -30,7 +30,7 @@ namespace Ria.Application.Customers.CommandsHandlers
              
                 if (_customerRepository.Exists(customer.Id))
                 {
-                    errors.Add($"Id:{customer.Id} already exists");
+                    errors.Add($"Id: {customer.Id} already exists");
                     continue;
                 }
 
@@ -48,8 +48,7 @@ namespace Ria.Application.Customers.CommandsHandlers
 
             if (errors.Count > 0)
             {
-                string msg = "Some customers failed." + Environment.NewLine + string.Join(Environment.NewLine, errors);
-                throw new DomainException(msg);
+                throw new DomainException("Some customers failed.", errors);
             }
 
             return await Task.FromResult(true);
